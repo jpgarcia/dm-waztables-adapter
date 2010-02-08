@@ -1,5 +1,4 @@
-Windows Azure Tables adapter for DataMapper
-===========================================
+= Windows Azure Tables adapter for DataMapper
 
 This ruby gem will allow you to interact with the **Windows Azure Table Service API** taking advantage of 
 the DataMapper simplicity.
@@ -11,16 +10,16 @@ You will find more information about this gem on ([waz-storage.heroku.com](http:
 
 **Note**: This gem is being developed, If you want to contribute you can fork this repo or giving feedback by email to [juanpablogarcia@gmail.com](mailto:juanpablogarcia@gmail.com Juan Pablo Garcia Dalolla)
 
-Gem Dependencies
-----------------
+== Gem Dependencies
+
 - Windows Azure Storage library 1.0.0 ([waz-storage](http://waz-storage.heroku.com/ "Windows Azure Storage library"))
 
-Getting started
----------------
+== Getting started
+
 	sudo gem install dm-waztables-adapter --source http://gemcutter.org
 
-Usage
------
+== Usage
+
 	require 'dm-waztables-adapter'
 	
 	# set up a DataMapper with your Windwows Azure account 
@@ -69,14 +68,14 @@ Usage
 	# deleting records
 	older_guitar_players.destroy!
 
-TODO
-----
+== TODO
+
 - Allow the ability of setting a property with :partition_key => true option 
 - Implement "in" operator in queries
 - Implement "order" query option
 - Retrieve more than 1000 fields using Windows Azure :continuation_token
 
-Known Issues
-------------
+== Known Issues
+
 - Like statements are not working since Microsoft service API is throwing a NotImplemented exception when 
 using *startswith* and *endswith* filters ([more information here](http://msdn.microsoft.com/en-us/library/dd541448.aspx))
