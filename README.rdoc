@@ -23,34 +23,32 @@ You will find more information about this gem on ([waz-storage.heroku.com](http:
 	require 'dm-waztables-adapter'
 	
 	# set up a DataMapper with your Windwows Azure account 
-    DataMapper.setup(:default, { :adapter => 'WAZTables',
-                                 :account_name => 'your_account_name',
-                                 :access_key => 'your_access_key',
+	DataMapper.setup(:default, { :adapter => 'WAZTables', :account_name => 'name', :access_key => 'your_access_key' })
 
-    # define a new model
-    class Guitarist
-     include DataMapper::Resource
+	# define a new model
+	class Guitarist
+		include DataMapper::Resource
 
-     property :id, String, :key => true
-     property :name, String
-     property :age, Integer
-    end
-	
+		property :id, String, :key => true
+		property :name, String
+		property :age, Integer
+	end
+
 	# set up database table on Windows Azure for a specific model
 	Guitarist.auto_migrate! # (destructive)
 	Guitarist.auto_upgrade! # (safe)
-	
+
 	# set up database table on Windows Azure for all defined models
 	Datamapper.auto_migrate! # (destructive)
 	Datamapper.auto_upgrade! # (safe)
-		
+	
 	# play with DataMapper as usual
 	Guitarist.create(:id => '1', :name => 'Ritchie Blackmore', :age => 65)
 
-    yngwie = Guitarist.new(:id => '2', :name => 'Yngwio Malmsteen', :age => 46)
-    yngwie.name = "Yngwie Malmsteen"
-    yngwie.save
-	
+	yngwie = Guitarist.new(:id => '2', :name => 'Yngwio Malmsteen', :age => 46)
+	yngwie.name = "Yngwie Malmsteen"
+	yngwie.save
+
 	# retrieving a unique record by its id
 	ritchie = Guitarist.get('1')
 	ritchie.age # => 65
@@ -58,12 +56,12 @@ You will find more information about this gem on ([waz-storage.heroku.com](http:
 	# updating records
 	ritchie.age = 66
 	ritchie.save
-	
+
 	# retrieving all guitarists
- 	Guitarist.all.length # => 2
-	
+		Guitarist.all.length # => 2
+
 	# performing queries
- 	older_guitar_players = Guitarist.all( { :age.gte => 50 } )
+		older_guitar_players = Guitarist.all( { :age.gte => 50 } )
 
 	# deleting records
 	older_guitar_players.destroy!
