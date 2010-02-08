@@ -9,7 +9,7 @@ in which I contribute with Table services and some improvements on the core serv
 
 You will find more information about this gem on ([waz-storage.heroku.com](http://waz-storage.heroku.com// "Windows Azure Storage library"))
 
-**Note**: This gem is being developed, If you want to contribute you can fork this repo or giving feedback by email to [juanpablogarcia@gmail.com](mailto://juanpablogarcia@gmail.com Juan Pablo Garcia Dalolla)
+**Note**: This gem is being developed, If you want to contribute you can fork this repo or giving feedback by email to juanpablogarcia@gmail.com
 
 Gem Dependencies
 ----------------
