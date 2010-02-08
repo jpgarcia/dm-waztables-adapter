@@ -1,0 +1,40 @@
+require 'rake'
+require 'rubygems'
+require 'spec/rake/spectask'
+require 'rake/gempackagetask'
+require 'rake/rdoctask'
+
+require 'lib/dm-waztables-adapter'
+
+namespace :test do
+  Spec::Rake::SpecTask.new('run_with_rcov') do |t|
+    t.spec_files = FileList['spec/*.rb'].reject{|f| f.include?('functional')}
+    t.rcov = true
+    t.rcov_opts = ['--text-report', '--exclude', "exclude.*/.gem,spec,Library,#{ENV['GEM_HOME']}", '--sort', 'coverage' ]
+    t.spec_opts = ['-cfn']
+  end
+end
+
+namespace :dist do  
+  spec = Gem::Specification.new do |s|
+    s.name              = 'dm-waztables-adapter'
+    s.version           = Gem::Version.new(DataMapper::WAZTables::Version)
+    s.summary           = "DataMapper adapter for Windows Azure Table Services"
+    s.description       = "Adapter created to use the Windows Azure Table Services leveraging the simplicity of DataMapper"
+    s.email             = 'juanpablogarcia@gmail.com'
+    s.author            = 'Juan Pablo Garcia Dalolla'
+    s.homepage          = 'http://github.com/jpgarcia/dm-waztables-adapter'
+    s.require_paths     = ["lib"]
+    s.files             = FileList['rakefile', 'lib/**/*.rb']
+    s.test_files        = Dir['spec/**/*']
+    s.has_rdoc          = true
+    s.rdoc_options      << '--line-numbers' << '--inline-source' << '-A cattr_accessor=object'
+    
+    # Dependencies
+    s.add_dependency 'waz-storage', '>= 1.0.0'
+  end
+  
+  Rake::GemPackageTask.new(spec) do |pkg|
+    pkg.need_tar = true
+  end
+end
