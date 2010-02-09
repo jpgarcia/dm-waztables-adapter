@@ -73,9 +73,11 @@ Usage
 TODO
 ----
 
-- Allow the ability of setting a property with :partition_key => true option 
-- Implement "in" operator in queries
-- Implement "order" query option
+- Allow users to define the model partition key by using :partition_key => true option on the property.
+- Allow users to set the partition key as an additional attribute of the model with a lambda as default value.
+- Allow users to set the partition key as a method on the model.
+- Implement “in” operator in queries
+- Implement “order” query option
 - Retrieve more than 1000 fields using Windows Azure :continuation_token
 
 Known Issues
@@ -83,3 +85,5 @@ Known Issues
 
 - Like statements are not working since Microsoft service API is throwing a NotImplemented exception when 
 using *startswith* and *endswith* filters ([more information here](http://msdn.microsoft.com/en-us/library/dd541448.aspx))
+- There’s no way to tell thru the entity which is the partition key of our entity, so there’s no out-of-the-box load 
+balancing support (for mor info on the tables model that a look at [http://msdn.microsoft.com/en-us/library/dd179338.aspx](http://msdn.microsoft.com/en-us/library/dd179338.aspx))

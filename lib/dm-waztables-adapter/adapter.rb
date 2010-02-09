@@ -30,7 +30,6 @@ module DataMapper
               when :not then 
                 "(#{c.operand.to_s.gsub(%r{=}, operator_mapping[c.slug]).gsub(%r{"}, "'")})"              
               when :like then
-                # 
                 name, value = c.subject.name, c.value.delete('%')
                 (c.value =~ /^%/) ? "endswith(#{name}, '#{value}')" : ((c.value =~ /%$/) ? "startswith(#{name}, '#{value}')" : "(#{name} eq '#{value}')")
               when :regexp then
